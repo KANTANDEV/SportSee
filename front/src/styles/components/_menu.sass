@@ -1,0 +1,42 @@
+.menu
+  height: 100%
+  width: $menu-width
+  position: fixed
+  top: 0
+  background-color: $black
+  vertical-align: center
+
+  .icons
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    gap: 1.5em
+
+    > div
+      cursor: pointer
+      width: 64px
+      height: 64px
+      background-color: white
+      border-radius: 5px
+      display: grid
+      place-items: center
+
+      &:hover img
+        transform: scale(1.25)
+
+      img
+        width: 50%
+        height: 50%
+        transition-duration: 250ms
+
+  p
+    position: absolute
+    left: 50%
+    bottom: 3em
+    writing-mode: vertical-rl
+    color: white
+    font-size: .75em
+    font-weight: 500
+    transform: translateX(-50%) rotateZ(180deg)

@@ -1,0 +1,43 @@
+.profile-page
+  margin: 50px 100px
+  padding-inline-start: calc($menu-width)
+
+  > h2
+    color: black
+    font-size: 3em
+    font-weight: 500
+    margin-block-end: 1.5rem
+
+    > span
+      color: red
+      cursor: pointer
+      user-select: none
+
+    + p
+      font-size: 18px
+
+  #data
+    overflow-x: auto
+    margin-block-start: 3em
+    display: grid
+    grid-template-columns: 835px 260px
+    column-gap: 1.5rem
+
+    > div
+      display: grid
+      padding-block-end: 10px
+
+      &:first-child
+        display: grid
+        grid-template-rows: 320px 260px
+        row-gap: 28px
+
+        > div:last-child
+          position: relative
+          height: 100%
+          display: grid
+          grid-template-columns: repeat(3, 260px)
+          column-gap: 30px
+
+      &:last-child
+        row-gap: 39px
