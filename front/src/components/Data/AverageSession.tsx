@@ -1,13 +1,16 @@
-//* importation des composants de Recharts
+//* Import components from Recharts
+//? importation des composants de Recharts
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
-//* Type pour les données du graphique
+//* Type for chart data
+//? Type pour les données du graphique
 type PropsType = Array<{
 	day: number | string
 	sessionLength: number
 }>
 
-//*Données par défaut pour le graphique de la durée moyenne des sessions
+//* Default data for the chart
+//? Données par défaut pour le graphique de la durée moyenne des sessions
 const defaultData: PropsType = [
 	{ day: 1, sessionLength: 0 },
 	{ day: 2, sessionLength: 0 },
@@ -18,15 +21,34 @@ const defaultData: PropsType = [
 	{ day: 7, sessionLength: 0 },
 ]
 
-//*Tableau pour les abréviations des jours de la semaine
+//* Table for the abbreviations of the days of the week
+//? Tableau pour les abréviations des jours de la semaine
+
+/**
+ * Table for the abbreviations of the days of the week
+ * @constant
+ * @type {{ [index: number]: string }}
+ */
+
 const days: { [index: number]: string } = { 1: 'L', 2: 'M', 3: 'M', 4: 'J', 5: 'V', 6: 'S', 7: 'D' }
 
-//*Exportation d'une fonction  pour le graphique
+//* Export the function for the chart
+//? Exportation d'une fonction  pour le graphique
+
+/**
+ * Export the function for the chart
+ * @function
+ * @param {PropsType} [data=defaultData] - Data for the chart
+ * @returns {JSX.Element}
+ */
+
 export default ({ data = defaultData }: { data?: PropsType }) => {
-	//* Utilisation de map pour convertir les numéros des jours en abréviations
+	//* Convert the day number to the abbreviation
+	//? Utilisation de map pour convertir les numéros des jours en abréviations
 	data.map((data) => (data && typeof data.day === 'number' ? (data.day = days[data.day]) : null))
 
-	//*Composant Tooltip personnalisé pour afficher la durée de la session en minutes
+	//* Custom Tooltip component to display the session duration in minutes
+	//? Composant Tooltip personnalisé pour afficher la durée de la session en minutes
 	const CustomTooltip = ({ active, payload }: { active: boolean; payload: any }) => {
 		if (active && payload && payload.length) {
 			return (
@@ -38,7 +60,8 @@ export default ({ data = defaultData }: { data?: PropsType }) => {
 		return null
 	}
 
-	//*Utilisation des composants de Recharts pour créer le graphique en ligne avec les données fournies, en personnalisant les options de mise en page et de style
+	//* Use Recharts components to create the line chart with the provided data, customizing the layout and style options
+	//? Utilisation des composants de Recharts pour créer le graphique en ligne avec les données fournies, en personnalisant les options de mise en page et de style
 	return (
 		<div>
 			<h2 className='avgtitle'>Durée moyenne des sessions</h2>

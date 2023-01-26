@@ -1,23 +1,40 @@
-//* Importation des modules React
+//* Import components from React
+//? Importation des modules React
 import { ReactElement, useState } from 'react'
-//* Importation des composants
+
+//* Import components
+//? Importation des composants
 import { DailyBoard, AverageSession, Performance, Score, Stats } from '../components/Data'
 
-//* Importation de la fonction custom "useGetData"
+//* Importing the "useGetData" custom function
+//? Importation de la fonction custom "useGetData"
 import useGetData from '../utils/useGetData'
 
+//* Export the Profile-page component
+//? Exportation du composant Profile-page
+
+/**
+@function
+@returns {React.ReactElement} - A React element containing data for user ID, user information, activity data, average data and performance data.
+@throws {Error} - If there is an error with the request, the error will be logged to the console and the error response will be returned.
+*/
+
 export default (): ReactElement => {
-	//* Déclaration d'un state "userID" avec un état initial de 12
+	//* Declaration of a "userID" state with an initial state of 12
+	//? Déclaration d'un state "userID" avec un état initial de 12
 	const [userID, setUserID] = useState<number>(12)
 
-	//* Utilisation de la fonction custom "useGetData" pour récupérer les données de l'utilisateur avec son ID
+	//* Declaration of a "userInformations" state with an initial state of null
+	//? Utilisation de la fonction custom "useGetData" pour récupérer les données de l'utilisateur avec son ID
 	const userInformations = useGetData(`/${userID}`)
 	const activityData = useGetData(`/${userID}/activity`)
 	const avgData = useGetData(`/${userID}/average-sessions`)
 	let performanceData = useGetData(`/${userID}/performance`)
 
-	//* on traduit en français les données récupérées de performanceData
-	//*on parcourt l'objet performanceData.kind et on remplace les valeurs en anglais par les valeurs en français mais on ne modifie pas l'objet performanceData
+	//* We translate the data retrieved from performanceData into French
+	//* We browse the performanceData.kind object and we replace the English values ​​with the French values ​​but we do not modify the performanceData object
+	//? On traduit en français les données récupérées de performanceData
+	//? On parcourt l'objet performanceData.kind et on remplace les valeurs en anglais par les valeurs en français mais on ne modifie pas l'objet performanceData
 	performanceData = {
 		...performanceData,
 		kind: {
@@ -30,9 +47,8 @@ export default (): ReactElement => {
 		},
 	}
 
-	console.log(performanceData)
-
-	//* On retourne le composant Profile-page
+	//* Return the Profile-page component
+	//? On retourne le composant Profile-page
 	return (
 		<div className='profile-page'>
 			<h2>

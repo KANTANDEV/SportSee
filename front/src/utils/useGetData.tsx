@@ -1,6 +1,16 @@
 import { useState, useEffect } from 'react'
 import axios, { AxiosRequestConfig } from 'axios'
 
+/**
+
+@function
+@async
+@param {string} url - The URL to make a GET request to.
+@param {AxiosRequestConfig} [options] - Additional options to pass to the axios.get() method.
+@returns {Promise<any>} - The data received from the GET request.
+@throws {Error} - If there is an error with the request, the error will be logged to the console and the error response will be returned.
+*/
+
 //* Exportation d'une fonction qui fait un requête  a l'api et retourne les données
 export default (url: string, options?: AxiosRequestConfig<any>) => {
 	//* Création d'un état pour stocker les données reçues de la requête

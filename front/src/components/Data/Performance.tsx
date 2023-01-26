@@ -1,13 +1,16 @@
-//* importation des composants de Recharts
+//* Import components from Recharts
+//? importation des composants de Recharts
 import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, Radar, LineChart } from 'recharts'
 
-//* Typage de l'objet PropsType
+//* Type for chart data
+//? Typage de l'objet PropsType
 type PropsType = {
 	kind?: { [index: number | string]: string }
 	data?: Array<{ kind: number | string; value: number }>
 }
 
-//* creation d'un objet PropsType
+//* Default data for the chart
+//? creation d'un objet PropsType
 const defaultData: PropsType = {
 	kind: {
 		1: 'Intensity',
@@ -27,12 +30,23 @@ const defaultData: PropsType = {
 	],
 }
 
-//* Exportation d'une fonction qui prend en paramètre des données pour le graphique des performances
+//* Exporting a function that takes data for the performance graph as a parameter
+//? Exportation d'une fonction qui prend en paramètre des données pour le graphique des performances
+
+/**
+@function
+@param {Object} kind - An object containing the mapping of numeric values to text values for the chart.
+@param {Array} data - An array of objects representing the data for the chart, containing properties "kind" and "value".
+@returns { JSX.Element } A JSX element representing the performance chart component.
+*/
+
 export default ({ kind = defaultData.kind, data = defaultData.data }: PropsType) => {
-	//* On utilise la méthode map() pour parcourir les données et remplacer les valeurs numériques en valeurs textuelles
+	//*We use the map() method to browse the data and replace the numeric values ​​into text values
+	//? On utilise la méthode map() pour parcourir les données et remplacer les valeurs numériques en valeurs textuelles
 	data!.map((data) => (data && typeof data.kind === 'number' ? (data.kind = kind![data.kind]) : null))
 
-	//* On retourne le composant graphique en utilisant les données en paramètre
+	//* We return the graphical component using the data in parameter
+	//? On retourne le composant graphique en utilisant les données en paramètre
 	return (
 		<div className='performance'>
 			<ResponsiveContainer width='100%' height='100%'>

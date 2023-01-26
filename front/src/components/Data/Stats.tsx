@@ -6,6 +6,13 @@ type PropsType = {
 	unit: string
 }
 //* Composant Stats
+
+/**
+@function Stats
+@param {PropsType} props
+@returns {JSX.Element}
+*/
+
 export default ({ name, img, value, unit }: PropsType) => {
 	return (
 		<div className='stats'>

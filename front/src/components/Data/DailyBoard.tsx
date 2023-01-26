@@ -1,9 +1,17 @@
-//* importation des composants de Recharts
-import { ResponsiveContainer, BarChart, CartesianGrid, XAxis, YAxis, Bar, Tooltip, Legend } from 'recharts'
-//* Type pour les données du graphique
-type PropsType = Array<{ day: string; kilogram: number; calories: number }>
+/** @file DailyBoard.tsx
+@version 1.0.0
+@param {PropsType} data - Data for the chart. An array of objects containing day, kilogram, and calories properties. Default data is provided.
+@returns {JSX} Returns a React JSX component that renders a bar chart of daily activity data. The chart includes a responsive container, bar chart, cartesian grid, x-axis, y-axis, bar, tooltip, and legend. The data is mapped to change the date format to be numbers. The tooltip includes a custom function for customization when hovering over chart elements. The legend also includes a custom function for customization.
+*/
 
-//* Données par défaut pour le graphique
+//* Import components from Recharts
+//? importation des composants de Recharts
+import { ResponsiveContainer, BarChart, CartesianGrid, XAxis, YAxis, Bar, Tooltip, Legend } from 'recharts'
+//* Type for chart data
+//? Type pour les données du graphique
+type PropsType = Array<{ day: string; kilogram: number; calories: number }>
+//* Default data for the chart
+//? Données par défaut pour le graphique
 const defaultData: PropsType = [
 	{ day: '1970-01-01', kilogram: 0, calories: 0 },
 	{ day: '1970-01-02', kilogram: 0, calories: 0 },
@@ -14,11 +22,14 @@ const defaultData: PropsType = [
 	{ day: '1970-01-07', kilogram: 0, calories: 0 },
 ]
 
-//* Exportation d'une fonction pour le graphique activites quotidiennes
+//* Export the function for the chart
+//? Exportation d'une fonction pour le graphique activites quotidiennes
 export default ({ data = defaultData }: { data?: PropsType }) => {
-	//* Mapping les jours pour changer leur format de date pour qu'ils soient sous forme de chiffres
+	//* Mapping the days to change the date format to be as numbers
+	//? Mapping les jours pour changer leur format de date pour qu'ils soient sous forme de chiffres
 	data.map((data, i) => (data.day = (++i).toString()))
-	//* Fonction de personnalisation de l'infobulle qui s'affiche lorsqu'on passe la souris sur un élément du graphique
+	//* Tooltip customization function that appears when hovering the mouse over a chart element
+	//? Fonction de personnalisation de l'infobulle qui s'affiche lorsqu'on passe la souris sur un élément du graphique
 	const CustomTooltip = ({ active, payload }: { active: boolean; payload: any }) => {
 		if (active && payload && payload.length) {
 			return (
@@ -31,7 +42,8 @@ export default ({ data = defaultData }: { data?: PropsType }) => {
 
 		return null
 	}
-	//* Fonction de personnalisation de la légende du graphique activites quotidiennes
+	//* Daily activity chart legend customization feature
+	//? Fonction de personnalisation de la légende du graphique activites quotidiennes
 	const legendContent = () => {
 		return (
 			<ul className='legend'>
